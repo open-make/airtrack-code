@@ -3,7 +3,7 @@
 
 #import <Arduino.h>
 #include "definitions.h"
-
+// which pins are used for what
 struct PinStruct
 {
 	CONST_PIN_TYPE Sensor = 2;

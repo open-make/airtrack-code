@@ -103,8 +103,8 @@ struct Sensor
   private:
     void setupOnce(void)
     {
-      //Serial.print("Setting up sensor on pin: ");
-      //Serial.println(this->interrupt_pin);
+      Serial.print("Setting up sensor on pin: ");
+      Serial.println(this->interrupt_pin);
       pinMode(this->interrupt_pin, INPUT);
       digitalWrite(this->interrupt_pin, HIGH); //enable pullup resistor
 
@@ -112,10 +112,10 @@ struct Sensor
       // I2c.begin();
       // I2c.timeOut(3000);
 
-      //Serial.println("Setting 0x00 register");
+      Serial.println("Setting 0x00 register");
       set_register(0x5A, ELE_CFG, 0x00);
 
-      //Serial.println("Setting Section A");
+      Serial.println("Setting Section A");
       // Section A - Controls filtering when data is > baseline.
       set_register(0x5A, MHD_R, 0x01);
       set_register(0x5A, NHD_R, 0x01);
@@ -171,7 +171,7 @@ struct Sensor
       set_register(0x5A, ELE11_T, NEW_TOU_THRESH);
       set_register(0x5A, ELE11_R, NEW_REL_THRESH);
 
-      //Serial.println("Setting Section D");
+      Serial.println("Setting Section D");
       // Section D
       // Set the Filter Configuration
       // Set ESI2

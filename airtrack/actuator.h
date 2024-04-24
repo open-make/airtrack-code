@@ -42,16 +42,21 @@ struct Actuator
     void setup()
     {
         this->global_state->actuator_at_max_push = false;
-        // Serial.println("Setting up actiator");
+        Serial.println("Setting up actiator");
+        Serial.println(this->ANALOUGE_PIN);
+        
+        this->change_required = true;
         this->setState(PULL);
-        // printState();
+        
+        printState();
         while (this->current_state != STILL)
         {
             this->motorLoop();
-            //Serial.print("Setup loop - current state: ");
-            //Serial.println(this->current_state);
+            Serial.print("Setup loop - current state: ");
+            Serial.println(this->current_state);
+        
         }
-        //Serial.println("Setup loop done");
+        Serial.println("Setup loop done");
     }
 
     void printState()
@@ -75,14 +80,15 @@ struct Actuator
 
     void motorLoop()
     {
-      // Serial.print("Motor loop - ");
-      //printState();
+      Serial.print("Motor loop - ");
+      printState();
       if (this->current_state == STILL)
       {
         return;
       }
 
       int sensor_value = analogRead(ANALOUGE_PIN);
+      
       if (sensor_value >= this->max_distance_pwm -30) // Leave a bit of buffer
       {
         this->global_state->actuator_at_max_push = true;
@@ -110,7 +116,7 @@ struct Actuator
           }
       }
       else if (this->current_state == PULL)
-      {
+      {   
           if (sensor_value <= 20) // Doesn't have to be completely retracted
           {
               digitalWrite(this->motor_push_pin, LOW);
