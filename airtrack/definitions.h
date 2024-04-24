@@ -91,6 +91,9 @@ struct GlobalState
 
    unsigned int trial_number;
 
+
+   // values for the MPR 121, change 
+
    static const long int SAME_SENSOR_MAX_THRESHOLD = 500;
    static const long int FORCE_OTHER_SENSOR = 3;
    static const long int FEEDBACK_AUTOMATED_REWARD_THRESHOLD = 3;
@@ -103,7 +106,7 @@ struct GlobalState
    bool is_automated_reward;
 };
 
-struct DistancesStruct
+struct DistancesStruct // Values depend on camera placement and are related to pixels of the camera view
 {
     uint16_t x_threshold_min;
     uint16_t x_threshold_max;
@@ -111,7 +114,7 @@ struct DistancesStruct
     uint16_t y_threshold_max;
     uint16_t y_motor_threshold;
 
-    DistancesStruct ()
+    DistancesStruct () //
     {
         this->x_threshold_min = 100;
         this->x_threshold_max = 350;
